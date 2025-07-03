@@ -17,7 +17,7 @@ const Header = () => {
     // Ref for the entire header to detect clicks outside for closing dropdowns
     const headerRef = useRef(null);
     // Ref to manage the timeout for closing dropdowns on mouse leave
-    const leaveTimeoutRef = useRef(null); // This needs to be available to Header's handlers
+    const leaveTimeoutRef = useRef(null);
 
     useEffect(() => {
         // Function to close dropdown on click outside header
@@ -39,7 +39,8 @@ const Header = () => {
         };
     }, []);
 
-    // Refresh logic for invalid routes (no change)
+    // Refresh logic for invalid routes
+    // This now correctly accounts for the basename
     useEffect(() => {
         const validRoutes = [
             "/", "/about-us", "/decor-themes", "/floral-designs", "/mandap-decor",
@@ -47,11 +48,18 @@ const Header = () => {
             "/wedding-vendors/photographers", "/wedding-vendors/caterers", "/wedding-vendors/music-dj",
             "/wedding-vendors/venues", "/brides/bridal-dresses", "/brides/makeup-artists",
             "/brides/jewelry", "/grooms/groom-outfits", "/grooms/wedding-accessories",
-            "/blogs/latest-trends", "/blogs/wedding-stories"
+            "/blogs/latest-trends", "/blogs/wedding-stories", "/eventplanner"
         ];
 
-        if (!validRoutes.includes(location.pathname)) {
-            navigate("/");
+        // Get the path relative to the basename
+        const currentPathRelative = location.pathname.startsWith("/Eventplanner")
+            ? location.pathname.substring("/Eventplanner".length)
+            : location.pathname;
+
+        // If the relative path is not in our valid routes, navigate to home.
+        // This prevents showing a blank page for mistyped or invalid sub-paths after the basename.
+        if (!validRoutes.includes(currentPathRelative) && currentPathRelative !== '') {
+            navigate("/"); // Navigate to the base route within your application
         }
     }, [location.pathname, navigate]);
 
@@ -66,10 +74,9 @@ const Header = () => {
 
     // Function to handle leaving a dropdown area (sets a delay before closing)
     const handleDropdownMouseLeave = () => {
-        // Set a timeout to close the dropdown after 200ms
         leaveTimeoutRef.current = setTimeout(() => {
             setActiveDropdown(null);
-        }, 200); // This delay is crucial for smooth interaction
+        }, 200);
     };
 
     return (
@@ -90,7 +97,7 @@ const Header = () => {
                                 icon={item.icon}
                                 options={item.options}
                                 activeDropdown={activeDropdown}
-                                setActiveDropdown={setActiveDropdown} // Keep this for click-to-close behavior on mobile or if you add it
+                                setActiveDropdown={setActiveDropdown}
                                 onMouseEnterHandler={handleDropdownMouseEnter}
                                 onMouseLeaveHandler={handleDropdownMouseLeave}
                             />
@@ -109,7 +116,6 @@ const Dropdown = ({ label, icon, activeDropdown, setActiveDropdown, options, onM
     return (
         <div
             className="relative inline-block"
-            // Use the handlers passed from the parent Header component
             onMouseEnter={() => onMouseEnterHandler(label)}
             onMouseLeave={onMouseLeaveHandler}
         >
@@ -137,15 +143,10 @@ const Dropdown = ({ label, icon, activeDropdown, setActiveDropdown, options, onM
                                 key={index}
                                 to={item.to}
                                 className="flex items-center px-4 py-3 hover:bg-yellow-500 hover:bg-opacity-20 hover:text-white transition-all duration-300 text-base font-medium"
-                                // On click, immediately close the dropdown and clear any pending timeouts
                                 onClick={() => {
                                     setActiveDropdown(null);
-                                    // Make sure to clear the timeout when a link is clicked,
-                                    // otherwise, it might close after navigating.
-                                    if (leaveTimeoutRef.current) { // Access directly or pass down
-                                        clearTimeout(leaveTimeoutRef.current);
-                                        leaveTimeoutRef.current = null;
-                                    }
+                                    // No need to clear timeout here directly, as mouseLeave handles it
+                                    // or the component unmounts on navigation.
                                 }}
                             >
                                 <FontAwesomeIcon icon={item.icon} className="mr-3 text-yellow-400" />
@@ -159,14 +160,14 @@ const Dropdown = ({ label, icon, activeDropdown, setActiveDropdown, options, onM
     );
 };
 
-// Updated Menu Items (keeping as is)
+// Updated Menu Items with corrected '/about-us' path (lowercase 'a')
 const menuItems = [
     {
         label: "Home",
         icon: faHome,
         options: [
             { to: "/", label: "Homepage", icon: faHome },
-            { to: "/AboutUs", label: "About Us", icon: faGlobe }
+            { to: "/about-us", label: "About Us", icon: faGlobe } // ⭐ FIXED: ensure path is lowercase "/about-us" ⭐
         ]
     },
     {

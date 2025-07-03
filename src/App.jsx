@@ -26,13 +26,14 @@ import WeddingStories from './WeddingStories';
 import EventPlanner from './EventPlanner';
 
 const App = () => (
-  // Add the basename prop to BrowserRouter
+  // ⭐ IMPORTANT: Add the basename prop here! ⭐
   <Router basename="/Eventplanner">
     <div className="bg-gray-100 min-h-screen">
       <Header />
       <div className="mt-20">
         <Routes>
           <Route path="/" element={<Home />} />
+          {/* ⭐ Ensure this path exactly matches the one in Header's menuItems ⭐ */}
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/decor-themes" element={<DecorThemes />} />
           <Route path="/floral-designs" element={<FloralDesigns />} />
@@ -50,7 +51,6 @@ const App = () => (
           <Route path="/grooms/wedding-accessories" element={<WeddingAccessories />} />
           <Route path="/blogs/latest-trends" element={<LatestTrends />} />
           <Route path="/blogs/wedding-stories" element={<WeddingStories />} />
-          {/* Note: The path for EventPlanner should likely be just "/eventplanner" if that's what you link to */}
           <Route path="/eventplanner" element={<EventPlanner />} />
         </Routes>
       </div>

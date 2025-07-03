@@ -1,28 +1,33 @@
-import React, { useState, useEffect } from "react"; // Import useEffect
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaEnvelope, FaPhoneAlt, FaMapMarkerAlt, FaWhatsapp, FaGlobe } from "react-icons/fa";
-import { useLocation } from "react-router-dom"; // Import useLocation
+import { useLocation } from "react-router-dom";
 
 const AboutUs = () => {
     const [isOpen, setIsOpen] = useState(false);
-    const location = useLocation(); // Get current location
+    const location = useLocation();
 
     // Effect to open modal automatically if routed to /about-us
     useEffect(() => {
-        if (location.pathname === "/about-us") {
+        // This checks if the pathname *ends with* '/about-us' to handle the basename.
+        // It's a robust check.
+        if (location.pathname.endsWith("/about-us")) {
             setIsOpen(true);
+        } else {
+            // Optional: Close modal if navigated away from /about-us
+            setIsOpen(false);
         }
-    }, [location.pathname]); // Re-run if location changes
+    }, [location.pathname]);
 
     // Stop body scrolling when the modal is open
-    useEffect(() => { // Changed to useEffect from React.useEffect
+    useEffect(() => {
         if (isOpen) {
             document.body.style.overflow = 'hidden';
         } else {
             document.body.style.overflow = 'unset';
         }
         return () => {
-            document.body.style.overflow = 'unset'; // Clean up on unmount
+            document.body.style.overflow = 'unset';
         };
     }, [isOpen]);
 
@@ -45,8 +50,6 @@ const AboutUs = () => {
                 <p className="text-lg text-gray-200 leading-relaxed mb-6">
                     At WeddingWonders, we believe every love story deserves a magical beginning. We're dedicated to transforming your dream wedding into a flawless reality with our comprehensive planning tools, trusted vendor network, and inspiring decor ideas.
                 </p>
-                {/* This button will still work if someone directly navigates to /about-us and closes the modal,
-                    allowing them to reopen it from the page itself. */}
                 <button
                     onClick={() => setIsOpen(true)}
                     className="px-8 py-4 bg-gradient-to-r from-yellow-500 to-orange-500 text-gray-900 font-bold rounded-full shadow-lg hover:shadow-yellow-400/40 transform hover:scale-105 transition-all duration-300 ease-in-out text-xl tracking-wide uppercase"
@@ -54,7 +57,6 @@ const AboutUs = () => {
                     Discover Our Story
                 </button>
             </motion.div>
-
 
             <AnimatePresence>
                 {isOpen && (
