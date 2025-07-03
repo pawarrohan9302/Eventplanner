@@ -6,17 +6,17 @@ const floralDesigns = [
     {
         title: "Royal Rose Arch",
         description: "A grand entrance with lush red roses and golden drapes.",
-        image: "/pngtree-royal-peacock-wedding-arch-with-pink-roses-png-image_14507148.png",
+        image: "/Eventplanner/floral canapy.jpg",
     },
     {
         title: "Blossom Canopy",
         description: "A dreamy floral canopy with fresh orchids and jasmine for a magical ambiance.",
-        image: "/floral canapy.jpg",
+        image: "/Eventplanner/blossomconopyimage.jpg",
     },
     {
         title: "Golden Petal Pathway",
         description: "An elegant walkway covered with golden petals and floral chandeliers.",
-        image: "/golden petal pathway.jpg", // ✅ Image path updated
+        image: "/Eventplanner/golden petal pathway.jpg", // ✅ Image path updated
     }
 ];
 

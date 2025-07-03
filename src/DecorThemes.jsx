@@ -6,37 +6,37 @@ const themes = [
     {
         title: "Royal Floral Design",
         description: "Experience the grandeur of a luxurious floral theme with exquisite flower arrangements and artistic elegance.",
-        image: "/images/royal-floral.jpg",
+        image: "/Eventplanner/royalrosh.png", // ✅ Updated Path
     },
     {
         title: "Majestic Mandap Decoration",
         description: "Step into a majestic wedding with intricately designed mandaps featuring premium drapes and gold embellishments.",
-        image: "/images/majestic-mandap.jpg",
+        image: "/Eventplanner/majestic mandap decoration.jpg",
     },
     {
         title: "Celestial Wedding Theme",
         description: "A mesmerizing theme with cosmic-inspired lighting and dreamy floral arrangements.",
-        image: "/images/celestial-theme.jpg",
-    }
+        image: "/Eventplanner/celestialweddingtheme.jpg",
+    },
+
 ];
 
 const DecorThemes = () => {
-    // State to control modal visibility and selected theme
     const [selectedTheme, setSelectedTheme] = useState(null);
 
-    // Function to open modal with theme details
     const openModal = (theme) => {
         setSelectedTheme(theme);
     };
 
-    // Function to close modal
     const closeModal = () => {
         setSelectedTheme(null);
     };
 
     return (
         <div className="bg-gradient-to-b from-black via-gray-900 to-black text-white py-16 min-h-screen">
-            <h2 className="text-4xl font-extrabold text-center text-yellow-400 mb-8">Exclusive Wedding Decor Themes</h2>
+            <h2 className="text-4xl font-extrabold text-center text-yellow-400 mb-8">
+                Exclusive Wedding Decor Themes
+            </h2>
             <div className="container mx-auto grid md:grid-cols-3 gap-12 px-6">
                 {themes.map((theme, index) => (
                     <motion.div
@@ -52,7 +52,7 @@ const DecorThemes = () => {
                             <p className="mt-2 text-gray-300">{theme.description}</p>
                             <button
                                 className="mt-4 px-5 py-2 bg-yellow-400 text-black rounded-full shadow-lg font-semibold hover:bg-yellow-500 transition"
-                                onClick={() => openModal(theme)} // Open modal with theme details
+                                onClick={() => openModal(theme)}
                             >
                                 View Details
                             </button>
@@ -61,7 +61,6 @@ const DecorThemes = () => {
                 ))}
             </div>
 
-            {/* Modal for displaying selected theme details */}
             {selectedTheme && (
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75 z-50">
                     <div className="bg-white rounded-lg max-w-lg w-full p-6">

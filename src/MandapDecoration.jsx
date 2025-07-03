@@ -5,17 +5,17 @@ const mandapDecorations = [
     {
         title: "Maharaja Mandap",
         description: "A regal mandap with gold-plated pillars and intricate carvings.",
-        image: "/crystal-mandap-01.jpg",
+        image: "/Eventplanner/crystal-mandap-01.jpg",
     },
     {
         title: "Divine Lotus Mandap",
         description: "A spiritual setup with a grand lotus theme and divine aura.",
-        image: "/lotus-shaped-mandap-dome.jpg",
+        image: "/Eventplanner/lotus-shaped-mandap-dome.jpg",
     },
     {
         title: "Celestial Pearl Mandap",
         description: "A luxurious mandap with pearl white drapes and starry lighting.",
-        image: "/red pearl mandap.jpg", // ✅ Updated Path
+        image: "/Eventplanner/red-pearl-mandap.jpg", // ✅ Updated Path
     }
 ];
 

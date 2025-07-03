@@ -1,35 +1,28 @@
 import React, { useState } from 'react';
-import { FaCamera, FaCloudUploadAlt, FaCalendarAlt, FaMusic, FaPhoneAlt } from 'react-icons/fa';
+import { FaCamera, FaCloudUploadAlt, FaCalendarAlt, FaMusic } from 'react-icons/fa';
 
 const Photographers = () => {
     const [eventType, setEventType] = useState('Wedding');
 
     const haldiPhotos = [
-        'path/to/haldi-photo1.jpg',
-        'path/to/haldi-photo2.jpg',
-        'path/to/haldi-photo3.jpg'
-    ];  // Replace with your image paths
+        '/Eventplanner/haldi1.jpeg',
+        '/Eventplanner/haldi2.jpg',
+        '/Eventplanner/haldi3.jpg'
+    ];
 
     const weddingPhotos = [
-        'path/to/wedding-photo1.jpg',
-        'path/to/wedding-photo2.jpg',
-        'path/to/wedding-photo3.jpg'
+        '/Eventplanner/weddingphoto1.jpeg',
+        '/Eventplanner/weddingimage2.jpeg',
+        '/Eventplanner/weddingimage3.jpg'
     ];
 
     const djPhotos = [
-        'path/to/dj-photo1.jpg',
-        'path/to/dj-photo2.jpg',
-        'path/to/dj-photo3.jpg'
+        '/public/dj1.jpg',
+        '/Eventplanner/dj2.webp',
+        '/Eventplanner/dj33.jpg'
     ];
 
-    let selectedPhotos = [];
-    if (eventType === 'Haldi') {
-        selectedPhotos = haldiPhotos;
-    } else if (eventType === 'Wedding') {
-        selectedPhotos = weddingPhotos;
-    } else if (eventType === 'DJ') {
-        selectedPhotos = djPhotos;
-    }
+    const selectedPhotos = eventType === 'Haldi' ? haldiPhotos : eventType === 'Wedding' ? weddingPhotos : djPhotos;
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -46,7 +39,6 @@ const Photographers = () => {
                     Capture your special moments with our expert photography. Select your event!
                 </p>
 
-                {/* Event Type Selector */}
                 <div className="flex justify-center mb-10">
                     <select
                         value={eventType}
@@ -59,7 +51,6 @@ const Photographers = () => {
                     </select>
                 </div>
 
-                {/* Event Icon Section */}
                 <div className="flex justify-center gap-6 mb-12">
                     <div className="text-center">
                         <FaCamera className="text-6xl mb-4 text-yellow-400" />
@@ -79,12 +70,11 @@ const Photographers = () => {
                     </div>
                 </div>
 
-                {/* Description Section */}
                 <div className="flex justify-center mb-12">
                     <div className="bg-black text-white p-8 rounded-2xl shadow-xl w-full max-w-2xl">
                         <h2 className="text-3xl font-semibold mb-4">{eventType} Photography</h2>
                         <p className="text-lg text-gray-400 mb-6">
-                            Our premium {eventType} photography services capture your special moments with elegance. Whether it’s the joy of your wedding day, the vibrant celebration of Haldi, or the energy of a DJ night, we ensure every moment is beautifully documented.
+                            Our premium {eventType} photography services capture your special moments with elegance.
                         </p>
                         <button className="bg-yellow-400 text-black py-2 px-6 rounded-full text-lg hover:bg-yellow-300 transition-all">
                             Book Your Photographer
@@ -92,7 +82,6 @@ const Photographers = () => {
                     </div>
                 </div>
 
-                {/* Photos Section */}
                 <div className="mb-12">
                     <h2 className="text-3xl font-semibold text-center text-yellow-400 mb-8">
                         {eventType} Photos
@@ -113,7 +102,6 @@ const Photographers = () => {
                     </div>
                 </div>
 
-                {/* Contact Form Section */}
                 <div className="bg-black text-white p-8 rounded-2xl shadow-xl w-full max-w-2xl mx-auto">
                     <h2 className="text-3xl font-semibold text-center text-yellow-400 mb-8">
                         Contact the Photographer
@@ -121,38 +109,17 @@ const Photographers = () => {
                     <form onSubmit={handleSubmit} className="space-y-6">
                         <div>
                             <label className="block text-lg" htmlFor="name">Your Name</label>
-                            <input
-                                type="text"
-                                id="name"
-                                name="name"
-                                required
-                                className="w-full py-2 px-4 bg-gray-800 text-white rounded-lg"
-                            />
+                            <input type="text" id="name" name="name" required className="w-full py-2 px-4 bg-gray-800 text-white rounded-lg" />
                         </div>
                         <div>
                             <label className="block text-lg" htmlFor="email">Your Email</label>
-                            <input
-                                type="email"
-                                id="email"
-                                name="email"
-                                required
-                                className="w-full py-2 px-4 bg-gray-800 text-white rounded-lg"
-                            />
+                            <input type="email" id="email" name="email" required className="w-full py-2 px-4 bg-gray-800 text-white rounded-lg" />
                         </div>
                         <div>
                             <label className="block text-lg" htmlFor="message">Your Message</label>
-                            <textarea
-                                id="message"
-                                name="message"
-                                required
-                                rows="4"
-                                className="w-full py-2 px-4 bg-gray-800 text-white rounded-lg"
-                            />
+                            <textarea id="message" name="message" required rows="4" className="w-full py-2 px-4 bg-gray-800 text-white rounded-lg" />
                         </div>
-                        <button
-                            type="submit"
-                            className="bg-yellow-400 text-black py-2 px-6 rounded-full text-lg hover:bg-yellow-300 transition-all w-full"
-                        >
+                        <button type="submit" className="bg-yellow-400 text-black py-2 px-6 rounded-full text-lg hover:bg-yellow-300 transition-all w-full">
                             Send Message
                         </button>
                     </form>

@@ -5,13 +5,13 @@ import 'slick-carousel/slick/slick-theme.css';
 
 // Import Components
 import Header from './Header';
-import AboutUs from './AboutUs'; // ✅ About Us Component Import
 import Home from './Home';
+import AboutUs from './AboutUs';
 import DecorThemes from './DecorThemes';
 import FloralDesigns from './FloralDesigns';
 import MandapDecoration from './MandapDecoration';
-import BudgetPlanner from './BudgetPlanner'; // ✅ New Import
-import GuestListManager from './GuestListManager'; // ✅ New Import
+import BudgetPlanner from './BudgetPlanner';
+import GuestListManager from './GuestListManager';
 import Photographers from './Photographers';
 import Caterers from './Caterers';
 import MusicDJ from './MusicDJ';
@@ -23,12 +23,14 @@ import GroomOutfits from './GroomOutfits';
 import WeddingAccessories from './WeddingAccessories';
 import LatestTrends from './LatestTrends';
 import WeddingStories from './WeddingStories';
+import EventPlanner from './EventPlanner';
 
 const App = () => (
-  <Router>
+  // Add the basename prop to BrowserRouter
+  <Router basename="/Eventplanner">
     <div className="bg-gray-100 min-h-screen">
       <Header />
-      <div className="mt-20"> {/* Fix for header overlap */}
+      <div className="mt-20">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about-us" element={<AboutUs />} />
@@ -48,6 +50,8 @@ const App = () => (
           <Route path="/grooms/wedding-accessories" element={<WeddingAccessories />} />
           <Route path="/blogs/latest-trends" element={<LatestTrends />} />
           <Route path="/blogs/wedding-stories" element={<WeddingStories />} />
+          {/* Note: The path for EventPlanner should likely be just "/eventplanner" if that's what you link to */}
+          <Route path="/eventplanner" element={<EventPlanner />} />
         </Routes>
       </div>
     </div>

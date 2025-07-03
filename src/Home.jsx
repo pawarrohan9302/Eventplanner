@@ -98,9 +98,8 @@ const Home = () => {
                 <h3 className="text-4xl font-extrabold text-yellow-400">Wedding Wonders</h3>
                 <p className="mt-2 text-lg italic">Making your dream wedding a reality!</p>
                 <div className="mt-6 flex justify-center space-x-6">
-                    <a href="#" className="text-gray-400 hover:text-yellow-500"><FaFacebook size={28} /></a>
-                    <a href="#" className="text-gray-400 hover:text-yellow-500"><FaInstagram size={28} /></a>
-                    <a href="#" className="text-gray-400 hover:text-yellow-500"><FaTwitter size={28} /></a>
+                    <a href="https://www.facebook.com/yourprofile" className="text-gray-400 hover:text-yellow-500"><FaFacebook size={28} /></a>
+                    <a href="https://www.instagram.com/_rohan_pawar" className="text-gray-400 hover:text-yellow-500"><FaInstagram size={28} /></a>
                 </div>
                 <p className="mt-6 text-sm">&copy; 2025 Wedding Wonders. All rights reserved.</p>
             </footer>
